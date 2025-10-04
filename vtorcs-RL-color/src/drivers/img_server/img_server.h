@@ -28,7 +28,9 @@ static Driver * driver[NBBOTS];
 
 #define UDP_ID "SCR"
 #define UDP_DEFAULT_TIMEOUT 10000
-#define UDP_MSGLEN 64*64+1000
+//#define UDP_MSGLEN 64*64+1000
+// YAB - Changing to match 640x480 screen size
+#define int UDP_MSGLEN = 640*480+1000
 static int UDP_TIMEOUT = UDP_DEFAULT_TIMEOUT;
 static int listenSocket[NBBOTS];
 socklen_t clientAddressLength[NBBOTS];

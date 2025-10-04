@@ -49,7 +49,10 @@ int	RESTART = 0;
 
 // GIUSE - debug - size of the image to be sent through udp
 // Make it zero to deactivate
-int GIUSEIMGSIZE = 64;
+// int GIUSEIMGSIZE = 64;
+// YAB - Changing to rect. image size 640x480
+int GIUSEIMGSIZE_W = 640;
+int GIUSEIMGSIZE_H = 480;
 
 static void ReRaceRules(tCarElt *car);
 
@@ -127,7 +130,9 @@ ReRaceBigMsgSet(char *msg, double life)
 
 
 // GIUSE - TODO: quick hack, find them a place!
-static unsigned char* tmpRGBimg = (unsigned char*)malloc( 3 * GIUSEIMGSIZE * GIUSEIMGSIZE * sizeof(unsigned char) );
+//static unsigned char* tmpRGBimg = (unsigned char*)malloc( 3 * GIUSEIMGSIZE * GIUSEIMGSIZE * sizeof(unsigned char) );
+// YAB - Changing to rect. image size 640x480
+static unsigned char* tmpRGBimg = (unsigned char*)malloc( 3 * GIUSEIMGSIZE_W * GIUSEIMGSIZE_H * sizeof(unsigned char) );
 static double* RGBscales = (double*)malloc( 3 * sizeof(double) );
 
 
@@ -200,7 +205,9 @@ visionUpdate()
 		*/
 
 		double avg,r,g,b,min,max,s,delta;
-		for (int pixel=0; pixel < 3*GIUSEIMGSIZE*GIUSEIMGSIZE; pixel++)
+		//for (int pixel=0; pixel < 3*GIUSEIMGSIZE*GIUSEIMGSIZE; pixel++)
+        // YAB - Changing to rect. image size 640x480
+		for (int pixel=0; pixel < 3*GIUSEIMGSIZE_W*GIUSEIMGSIZE_H; pixel++)
 		{
 				ReInfo->vision->img[pixel] = (unsigned char) (tmpRGBimg[pixel]);
 		}
@@ -772,8 +779,13 @@ ReStart(void)
       GfScrGetSize(&ReInfo->vision->sw, &ReInfo->vision->sh, &ReInfo->vision->vw, &ReInfo->vision->vh);
 
       // GIUSE - debug - fixed image size to try the speed of udp
-      if( GIUSEIMGSIZE > 0 )
-        ReInfo->vision->sw = ReInfo->vision->sh = ReInfo->vision->vw = ReInfo->vision->vh = GIUSEIMGSIZE;
+    //   if( GIUSEIMGSIZE > 0 )
+    //     ReInfo->vision->sw = ReInfo->vision->sh = ReInfo->vision->vw = ReInfo->vision->vh = GIUSEIMGSIZE;
+      // YAB - Changing to rect. image size 640x480
+	  if( GIUSEIMGSIZE_W > 0 && GIUSEIMGSIZE_H > 0 ) {
+        ReInfo->vision->sw = ReInfo->vision->vw = GIUSEIMGSIZE_W;
+		ReInfo->vision->sh = ReInfo->vision->vh = GIUSEIMGSIZE_H;
+	  }
 
       ReInfo->vision->imgsize = 3*ReInfo->vision->vw * ReInfo->vision->vh; // for RGB
       ReInfo->vision->img = (unsigned char*)malloc(ReInfo->vision->imgsize * sizeof(unsigned char));
@@ -781,7 +793,9 @@ ReStart(void)
 
       // GIUSE - let's avoid zero-images if sent before grabbing the next frame
       memset(ReInfo->vision->img, 1, ReInfo->vision->imgsize * sizeof(unsigned char));
-      memset(tmpRGBimg, 1, 3 * GIUSEIMGSIZE * GIUSEIMGSIZE * sizeof(unsigned char));
+    //   memset(tmpRGBimg, 1, 3 * GIUSEIMGSIZE * GIUSEIMGSIZE * sizeof(unsigned char));
+      // YAB - Changing to rect. image size 640x480
+	  memset(tmpRGBimg, 1, 3 * GIUSEIMGSIZE_W * GIUSEIMGSIZE_H * sizeof(unsigned char));
       memset(RGBscales, 1, 3 * sizeof(double));
 
       printf( "sw %d - sh %d - vw %d - vh %d - imgsize %d\n", ReInfo->vision->sw, ReInfo->vision->sh, ReInfo->vision->vw, ReInfo->vision->vh, ReInfo->vision->imgsize);

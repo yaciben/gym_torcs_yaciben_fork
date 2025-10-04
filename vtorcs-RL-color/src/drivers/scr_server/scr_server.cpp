@@ -67,7 +67,9 @@ typedef struct sockaddr_in tSockAddrIn;
 #define UDP_DEFAULT_TIMEOUT 100000
 //#define UDP_DEFAULT_TIMEOUT 100000
 // GIUSE - size has to be increased to accomodate larger images
-static int UDP_MSGLEN = 64*64+1000;
+//static int UDP_MSGLEN = 64*64+1000;
+// YAB - Changing to match 640x480 screen size
+static int UDP_MSGLEN = 640*480+1000;
 
 //#define UDP_MSGLEN 650000
 //#define __UDP_SERVER_VERBOSE__
