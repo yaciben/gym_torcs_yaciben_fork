@@ -571,7 +571,7 @@ if (RESTARTING[index]==0)
     if (sendto(listenSocket[index], stateString.c_str(), stateString.length() + 1, 0,
                (struct sockaddr *) &clientAddress[index],
                sizeof(clientAddress[index])) < 0)
-        std::cerr << "Error: cannot send car state";
+        std::cerr << "scr_server.cpp: Error: cannot send car state";
 
 
     // Set timeout for client answer
@@ -628,7 +628,7 @@ if (RESTARTING[index]==0)
     else
     {
 //#ifdef __UDP_SERVER_VERBOSE__
-        std::cout << "Timeout for client answer\n";
+        std::cout << "scr_server.cpp: Timeout for client answer\n";
 //#endif
 
         // If no new controls are availables uses old ones...
