@@ -541,7 +541,7 @@ if (RESTARTING[index]==0)
 #ifdef __UDP_SERVER_VERBOSE__
 
     std::cout << "Sending - state length is: " << stateString.length() << std::endl;
-    std::cout << "Sending: " << stateString.c_str() << std::endl;
+    // std::cout << "Sending: " << stateString.c_str() << std::endl;
 
 #endif
 
