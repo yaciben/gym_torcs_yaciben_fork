@@ -72,7 +72,7 @@ typedef struct sockaddr_in tSockAddrIn;
 static int UDP_MSGLEN = 640*480+1000;
 
 //#define UDP_MSGLEN 650000
-//#define __UDP_SERVER_VERBOSE__
+#define __UDP_SERVER_VERBOSE__
 /************************/
 
 static int UDP_TIMEOUT = UDP_DEFAULT_TIMEOUT;
@@ -540,7 +540,7 @@ if (RESTARTING[index]==0)
 {
 #ifdef __UDP_SERVER_VERBOSE__
 
-    std::cout << "Sending: " << stateString.c_str() << std::endl;
+    std::cout << "Sending - state length is: " << stateString.length() << std::endl;
     std::cout << "Sending: " << stateString.c_str() << std::endl;
 
 #endif
