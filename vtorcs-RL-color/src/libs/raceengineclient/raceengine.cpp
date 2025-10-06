@@ -50,9 +50,11 @@ int	RESTART = 0;
 // GIUSE - debug - size of the image to be sent through udp
 // Make it zero to deactivate
 // int GIUSEIMGSIZE = 64;
-// YAB - Changing to rect. image size 640x480
-int GIUSEIMGSIZE_W = 640;
-int GIUSEIMGSIZE_H = 480;
+// YAB - Changing to rect. image size
+// int GIUSEIMGSIZE_W = 640;
+// int GIUSEIMGSIZE_H = 480;
+int GIUSEIMGSIZE_W = 64;
+int GIUSEIMGSIZE_H = 64;
 
 static void ReRaceRules(tCarElt *car);
 
