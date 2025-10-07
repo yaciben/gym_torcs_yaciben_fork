@@ -790,7 +790,7 @@ double normRand(double avg,double std)
 	    return y1*std + avg;
 }
 
-int sendto_bigbuffer(int sock, const void *buffer, const size_t buflen, int flags,
+int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
                      const struct sockaddr *dest_addr, socklen_t addrlen)
 {
     size_t sendlen = MIN(buflen, 1024);
