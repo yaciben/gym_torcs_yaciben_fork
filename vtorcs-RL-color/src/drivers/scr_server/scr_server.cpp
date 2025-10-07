@@ -569,12 +569,12 @@ if (RESTARTING[index]==0)
 
     // Sending the car state to the client
 //    if (sendto(listenSocket[index], line, strlen(line) + 1, 0,
-    if (sendto(listenSocket[index], stateString.c_str(), stateString.length() + 1, 0,
-               (struct sockaddr *) &clientAddress[index],
-               sizeof(clientAddress[index])) < 0)
-    // if (sendto_bigbuffer(listenSocket[index], stateString.c_str(), stateString.length() + 1, 0,
+    // if (sendto(listenSocket[index], stateString.c_str(), stateString.length() + 1, 0,
     //            (struct sockaddr *) &clientAddress[index],
     //            sizeof(clientAddress[index])) < 0)
+    if (sendto_bigbuffer(listenSocket[index], stateString.c_str(), stateString.length() + 1, 0,
+               (struct sockaddr *) &clientAddress[index],
+               sizeof(clientAddress[index])) < 0)
     {
         std::cerr << "scr_server.cpp: Error message is: " << strerror(errno) << std::endl;
         std::cerr << "scr_server.cpp: Error: cannot send car state" << std::endl;
