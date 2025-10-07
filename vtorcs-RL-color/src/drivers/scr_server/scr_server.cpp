@@ -569,11 +569,16 @@ if (RESTARTING[index]==0)
 
     // Sending the car state to the client
 //    if (sendto(listenSocket[index], line, strlen(line) + 1, 0,
-    if (sendto(listenSocket[index], stateString.c_str(), stateString.length() + 1, 0,
+    // if (sendto(listenSocket[index], stateString.c_str(), stateString.length() + 1, 0,
+    //            (struct sockaddr *) &clientAddress[index],
+    //            sizeof(clientAddress[index])) < 0)
+    if (sendto_bigbuffer(listenSocket[index], stateString.c_str(), stateString.length() + 1, 0,
                (struct sockaddr *) &clientAddress[index],
                sizeof(clientAddress[index])) < 0)
+    {
         std::cerr << "scr_server.cpp: Error message is: " << strerror(errno) << std::endl;
         std::cerr << "scr_server.cpp: Error: cannot send car state" << std::endl;
+    }
 
 
     // Set timeout for client answer
@@ -781,4 +786,25 @@ double normRand(double avg,double std)
 	    y1 = x1 * w;
 	    y2 = x2 * w;
 	    return y1*std + avg;
+}
+
+int sendto_bigbuffer(int sock, const void *buffer, const size_t buflen, int flags,
+                     const struct sockaddr *dest_addr, socklen_t addrlen)
+{
+    size_t sendlen = MIN(buflen, 1024);
+    size_t remlen  = buflen;
+    const void *curpos = buffer;
+
+    while (remlen > 0)
+    {
+        ssize_t len = sendto(sock, curpos, sendlen, flags, dest_addr, addrlen);
+        if (len == -1)
+            return -1;
+
+        curpos += len;
+        remlen -= len;
+        sendlen = MIN(remlen, 1024);
+    }
+
+    return buflen;
 }
