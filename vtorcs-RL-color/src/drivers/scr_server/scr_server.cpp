@@ -119,7 +119,7 @@ static double normRand(double avg,double std);
 static int listenSocket[NBBOTS];
 socklen_t clientAddressLength[NBBOTS];
 tSockAddrIn clientAddress[NBBOTS], serverAddress[NBBOTS];
-static int sendto_bigbuffer(int sock, const void *buffer, const size_t buflen, int flags,
+int sendto_bigbuffer(int sock, const void *buffer, const size_t buflen, int flags,
                      const struct sockaddr *dest_addr, socklen_t addrlen);
 /************************************************/
 
