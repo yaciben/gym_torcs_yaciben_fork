@@ -119,8 +119,8 @@ static double normRand(double avg,double std);
 static int listenSocket[NBBOTS];
 socklen_t clientAddressLength[NBBOTS];
 tSockAddrIn clientAddress[NBBOTS], serverAddress[NBBOTS];
-// int sendto_bigbuffer(int sock, const void *buffer, const size_t buflen, int flags,
-//                      const struct sockaddr *dest_addr, socklen_t addrlen);
+int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
+                     const struct sockaddr *dest_addr, socklen_t addrlen);
 /************************************************/
 
 static tdble oldAccel[NBBOTS];
