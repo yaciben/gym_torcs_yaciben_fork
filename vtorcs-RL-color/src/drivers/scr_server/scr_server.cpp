@@ -235,7 +235,8 @@ newrace(int index, tCarElt* car, tSituation *s)
     	exit(0);
     }
 
-    listenSocket[index] = socket(AF_INET, SOCK_DGRAM, 0);
+    // listenSocket[index] = socket(AF_INET, SOCK_DGRAM, 0);
+    listenSocket[index] = socket(AF_INET, SOCK_SEQPACKET, 0);
     if (listenSocket[index] < 0)
     {
         std::cerr << "Error: cannot create listenSocket!";
