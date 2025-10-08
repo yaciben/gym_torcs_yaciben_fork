@@ -239,7 +239,8 @@ newrace(int index, tCarElt* car, tSituation *s)
     listenSocket[index] = socket(AF_INET, SOCK_SEQPACKET, 0);
     if (listenSocket[index] < 0)
     {
-        std::cerr << "Error: cannot create listenSocket!";
+        std::cerr << "scr_server.cpp: Error message is: " << strerror(errno) << std::endl;
+        std::cerr << "Error: cannot create listenSocket!" << std::endl;
         exit(1);
     }
 
