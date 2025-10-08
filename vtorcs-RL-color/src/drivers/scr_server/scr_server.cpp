@@ -798,7 +798,7 @@ int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
     size_t remlen  = buflen;
     const void *curpos = buffer;
     
-    const int buffer_count = buflen / sendlen
+    const int buffer_count = buflen / sendlen;
 
 #ifdef __UDP_SERVER_VERBOSE__
 
