@@ -793,8 +793,8 @@ double normRand(double avg,double std)
 int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
                      const struct sockaddr *dest_addr, socklen_t addrlen)
 {
-    size_t sendlen = MIN(buflen, 1024);
-    // size_t sendlen = MIN(buflen, 650000);
+    // size_t sendlen = MIN(buflen, 1024);
+    size_t sendlen = MIN(buflen, 100000);
     // size_t sendlen = buflen;
     size_t remlen  = buflen;
     const void *curpos = buffer;
