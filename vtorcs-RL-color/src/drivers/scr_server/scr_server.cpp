@@ -236,6 +236,7 @@ newrace(int index, tCarElt* car, tSituation *s)
     }
 
     // listenSocket[index] = socket(AF_INET, SOCK_DGRAM, 0);
+    // YAB - Using SCTP connection instead of UDP
     listenSocket[index] = socket(AF_INET, SOCK_SEQPACKET, 0);
     if (listenSocket[index] < 0)
     {
@@ -263,6 +264,11 @@ newrace(int index, tCarElt* car, tSituation *s)
     listen(listenSocket[index], 5);
 
     std::cout << "Waiting for request on port " << getUDPListenPort()+index << "\n";
+
+    // YAB - Accept client connection
+    accept(bind(listenSocket[index],
+             (struct sockaddr *) &clientAddress[index],
+             sizeof(clientAddress[index])))
 
     // Loop until a client identifies correctly
     while (!identified)
