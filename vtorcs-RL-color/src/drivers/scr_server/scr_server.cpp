@@ -807,8 +807,6 @@ int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
 
 #endif    
 
-    ssize_t end_buf_len = sendto(sock, "udp_end", 7, flags, dest_addr, addrlen);
-
     while (remlen > 0)
     {
         ssize_t len = sendto(sock, curpos, sendlen, flags, dest_addr, addrlen);
@@ -819,6 +817,9 @@ int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
         remlen -= len;
         sendlen = MIN(remlen, 1024);
     }
+
+
+    ssize_t end_buf_len = sendto(sock, "udp_end", 7, flags, dest_addr, addrlen);
 
     return buflen;
 }
