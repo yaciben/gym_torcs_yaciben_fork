@@ -266,9 +266,9 @@ newrace(int index, tCarElt* car, tSituation *s)
     std::cout << "Waiting for request on port " << getUDPListenPort()+index << "\n";
 
     // YAB - Accept client connection
-    accept(bind(listenSocket[index],
+    accept(listenSocket[index],
              (struct sockaddr *) &clientAddress[index],
-             sizeof(clientAddress[index])))
+             sizeof(clientAddress[index]))
 
     // Loop until a client identifies correctly
     while (!identified)
