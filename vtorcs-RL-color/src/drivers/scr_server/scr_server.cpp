@@ -268,7 +268,7 @@ newrace(int index, tCarElt* car, tSituation *s)
     // YAB - Accept client connection
     accept(listenSocket[index],
              (struct sockaddr *) &clientAddress[index],
-             sizeof(clientAddress[index]))
+             sizeof(clientAddress[index]));
 
     // Loop until a client identifies correctly
     while (!identified)
