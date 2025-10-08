@@ -794,6 +794,7 @@ int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
                      const struct sockaddr *dest_addr, socklen_t addrlen)
 {
     size_t sendlen = MIN(buflen, 1024);
+    // size_t sendlen = MIN(buflen, 650000);
     // size_t sendlen = buflen;
     size_t remlen  = buflen;
     const void *curpos = buffer;
@@ -805,6 +806,8 @@ int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
     std::cout << "scr_server.cpp - buffer_count: " << buffer_count << std::endl;
 
 #endif    
+
+    ssize_t end_buf_len = sendto(sock, "udp_end", 7, flags, dest_addr, addrlen);
 
     while (remlen > 0)
     {
