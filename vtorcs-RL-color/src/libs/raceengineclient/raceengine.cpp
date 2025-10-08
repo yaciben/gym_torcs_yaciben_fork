@@ -51,10 +51,10 @@ int	RESTART = 0;
 // Make it zero to deactivate
 // int GIUSEIMGSIZE = 64;
 // YAB - Changing to rect. image size
-// int GIUSEIMGSIZE_W = 640;
-// int GIUSEIMGSIZE_H = 480;
-int GIUSEIMGSIZE_W = 64;
-int GIUSEIMGSIZE_H = 64;
+int GIUSEIMGSIZE_W = 640;
+int GIUSEIMGSIZE_H = 480;
+// int GIUSEIMGSIZE_W = 64;
+// int GIUSEIMGSIZE_H = 64;
 
 static void ReRaceRules(tCarElt *car);
 
