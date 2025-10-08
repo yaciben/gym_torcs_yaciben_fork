@@ -22,8 +22,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-// #include <math.h>
-#include <cmath>
+#include <math.h>
 #include <iostream>
 #include <sstream>
 #include <ctime>
@@ -799,7 +798,7 @@ int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
     size_t remlen  = buflen;
     const void *curpos = buffer;
     
-    const int buffer_count = std::ceil(buflen / sendlen);
+    int buffer_count = (buflen + sendlen - 1) / sendlen;
 
 #ifdef __UDP_SERVER_VERBOSE__
 
