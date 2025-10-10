@@ -803,7 +803,8 @@ int sendto_bigbuffer(int sock, const void *buffer, size_t buflen, int flags,
                      const struct sockaddr *dest_addr, socklen_t addrlen)
 {
     // const int max_len = 1024;
-    const int max_len = 65000;
+    // const int max_len = 65000;
+    const int max_len = 650000;
     size_t sendlen = MIN(buflen, max_len);
     // size_t sendlen = buflen;
     size_t remlen  = buflen;
